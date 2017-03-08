@@ -1,31 +1,26 @@
 var t = require('tap');
 var proxyquire = require('proxyquire');
 
-var srcPath = '../../../package';
+var srcPath = '../../../../package';
 
 var JsonPluginError = require(srcPath + '/Error');
 
-
-
-t.test('_exists', function (t) {
+t.test('exists', function (t) {
 
     t.test('should call fs.existsSync', function (t) {
 
         var validSourcePath = '/etc/some/path/test.json';
 
-        var Plugin = proxyquire(srcPath + '/JsonPlugin', {
+        var exists = proxyquire(srcPath + '/methods/exists', {
             fs: {
                 existsSync: function (sourcepath) {
                     t.equal(sourcepath, validSourcePath);
                     t.end();
-                },
-                '@noCallThru': true
+                }
             }
         });
 
-        var plugin = new Plugin();
-
-        plugin._exists(validSourcePath);
+        exists(validSourcePath);
 
     });
 
@@ -33,7 +28,7 @@ t.test('_exists', function (t) {
 
         var validSourcePath = '/etc/some/path/test.json';
 
-        var Plugin = proxyquire(srcPath + '/JsonPlugin', {
+        var exists = proxyquire(srcPath + '/methods/exists', {
             fs: {
                 existsSync: function () {
                     return true;
@@ -41,12 +36,11 @@ t.test('_exists', function (t) {
             }
         });
 
-        var plugin = new Plugin();
-
-        var promise = plugin._exists(validSourcePath);
+        var promise = exists(validSourcePath);
 
         t.type(promise.then, 'function');
         t.type(promise.catch, 'function');
+
         t.end();
 
     });
@@ -55,7 +49,7 @@ t.test('_exists', function (t) {
 
         var validSourcePath = '/etc/some/path/test.json';
 
-        var Plugin = proxyquire(srcPath + '/JsonPlugin', {
+        var exists = proxyquire(srcPath + '/methods/exists', {
             fs: {
                 existsSync: function () {
                     return true;
@@ -63,9 +57,7 @@ t.test('_exists', function (t) {
             }
         });
 
-        var plugin = new Plugin();
-
-        plugin._exists(validSourcePath)
+        exists(validSourcePath)
             .then(function () {
                 t.end();
             })
@@ -80,7 +72,7 @@ t.test('_exists', function (t) {
 
         var validSourcePath = '/etc/some/path/test.json';
 
-        var Plugin = proxyquire(srcPath + '/JsonPlugin', {
+        var exists = proxyquire(srcPath + '/methods/exists', {
             fs: {
                 existsSync: function () {
                     return false;
@@ -88,9 +80,7 @@ t.test('_exists', function (t) {
             }
         });
 
-        var plugin = new Plugin();
-
-        plugin._exists(validSourcePath)
+        exists(validSourcePath)
             .then(function () {
                 t.threw('should reject this promise');
             })

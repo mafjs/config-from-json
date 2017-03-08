@@ -53,6 +53,7 @@
   "nyc": {
     "all": true,
     "include": [
+      "src/methods/*.js",
       "src/*.js"
     ]
   }
