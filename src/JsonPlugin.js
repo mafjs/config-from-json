@@ -74,7 +74,7 @@ class FromJsonPlugin {
 
             if (fs.existsSync(sourcepath) === false) {
                 return reject(
-                    this.createError(JsonPluginError.CODES.NOT_EXISTS)
+                    this._createError(JsonPluginError.CODES.NOT_EXISTS)
                         .bind({
                             sourcepath: sourcepath
                         })
@@ -101,7 +101,7 @@ class FromJsonPlugin {
 
                 if (error) {
                     return reject(
-                        this.createError(JsonPluginError.CODES.CANT_READ_FILE)
+                        this._createError(JsonPluginError.CODES.CANT_READ_SOURCE)
                             .bind({
                                 sourcepath: sourcepath
                             })
@@ -131,7 +131,7 @@ class FromJsonPlugin {
                 resolve(json);
             } catch (error) {
                 return reject(
-                    this.createError(JsonPluginError.CODES.INVALID_JSON)
+                    this._createError(JsonPluginError.CODES.INVALID_JSON)
                         .bind({
                             sourcepath: sourcepath
                         })
@@ -148,7 +148,7 @@ class FromJsonPlugin {
      * @return {JsonPluginError}
      */
     _createError (code, error) {
-        return JsonPluginError.createError(code, error);
+        return this.Error.createError(code, error);
     }
 
     /**
@@ -164,7 +164,7 @@ class FromJsonPlugin {
         }
 
         if (typeof logger.debug !== 'function') {
-            throw new JsonPluginError(JsonPluginError.CODES.INVALID_LOGGER);
+            throw this._createError(JsonPluginError.CODES.INVALID_LOGGER);
         }
 
         return logger;
