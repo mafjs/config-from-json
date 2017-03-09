@@ -1,6 +1,6 @@
 # maf-config-from-json
 
-maf-config plugin for node.js, get config from json files
+[maf-config](https://github.com/mafjs/config) plugin for node.js, get config from json files
 
 
 [![bitHound Overall Score](https://www.bithound.io/github/mafjs/config-from-json/badges/score.svg)](https://www.bithound.io/github/mafjs/config-from-json)
