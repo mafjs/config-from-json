@@ -17,5 +17,17 @@ t.test('init', function (t) {
         t.end();
     });
 
+    t.test('should empty object if options not passed', function (t) {
+        var Plugin = proxyquire(srcPath + '/JsonPlugin', {});
+
+        var plugin = new Plugin();
+
+        plugin.init();
+
+        t.same(plugin._options, {});
+
+        t.end();
+    });
+
     t.end();
 });

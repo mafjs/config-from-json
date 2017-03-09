@@ -21,10 +21,12 @@ class FromJsonPlugin {
 
     /**
      * init
-     * @param {Object} options
+     * @param {?Object} options
      */
     init (options) {
-        this._options = options;
+        if (options) {
+            this._options = options;
+        }
     }
 
     /**

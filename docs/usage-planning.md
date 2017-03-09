@@ -9,14 +9,12 @@ var config = new Config();
 
 config
     .use(require('maf-config-from-json'))
-    .receive()
+    .init()
     .then(() => {
-        config.get('type');
+        config.get('some.config.param');
     })
     .catch((error) => {
-        
+        //
     });
-
-
 
 ```

@@ -10,6 +10,37 @@ maf-config plugin for node.js, get config from json files
 
 [![NPM](https://nodei.co/npm/maf-config-from-json.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/maf-config-from-json/)
 
+
+## install
+
+```
+npm install maf-config-from-json
+```
+
+## usage
+
+```js
+var Config = require('maf-config');
+
+var jsonPlugin = require('maf-config-from-json');
+
+var config = new Config();
+
+config
+    .use(jsonPlugin)
+    .from('/configs/config.json', '.')
+    .from('/configs/api.json', 'api')
+    .from('/configs/db.json', 'db')
+    .init()
+    .then(() => {
+        console.log(config.get('api.test')));
+    })
+    .catch((error) => {
+        logger.error(error);
+    });
+
+```
+
 # LICENSE
 
 MIT
