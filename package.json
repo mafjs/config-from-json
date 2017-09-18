@@ -37,7 +37,7 @@
   "homepage": "https://github.com/mafjs/config-from-json#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-plugin-istanbul": "^4.1.4",
+    "babel-plugin-istanbul": "^4.1.5",
     "babel-preset-es2015": "^6.24.1",
     "coveralls": "^2.13.1",
     "eslint": "^4.6.1",
